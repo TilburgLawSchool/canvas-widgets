@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Complete the sentence</title>
+<style>
+
+:root{
+  --tu-marine:#003366;
+  --tu-brons:#cc9933;
+  --tu-ink:#1b1b1b;
+  --tu-line:#d8dee6;
+  --tu-soft:#eef2f7;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  font-family:Arial,"Helvetica Neue",Helvetica,sans-serif;
+  color:var(--tu-ink);
+  background:transparent;
+  line-height:1.5;
+  padding:4px;
+}
+.tu-wrap{max-width:900px;margin:0 auto;}
+.tu-title{
+  font-size:20px;line-height:1.3;color:var(--tu-marine);
+  margin:0 0 4px;font-weight:bold;
+}
+.tu-intro{margin:0 0 16px;color:#41505f;font-size:15px;}
+.tu-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);}
+button{font-family:inherit;}
+
+
+.dw-bank{margin:0 0 16px;padding:12px;background:var(--tu-soft);border-radius:8px;min-height:52px;}
+.dw-word{display:inline-block;background:var(--tu-marine);color:#fff;border-radius:6px;padding:6px 12px;
+  margin:4px 6px 4px 0;cursor:grab;font-size:15px;border:0;}
+.dw-word.picked{background:var(--tu-brons);color:#1b1b1b;}
+.dw-text{font-size:16px;line-height:2.4;}
+.dw-gap{display:inline-flex;align-items:center;justify-content:center;min-width:120px;min-height:36px;
+  border:2px dashed var(--tu-marine);padding:6px 14px;margin:0 4px;text-align:center;background:#f7f9fc;
+  cursor:pointer;border-radius:8px;vertical-align:middle;}
+.dw-gap.over{background:#fdf7ec;border-style:solid;}
+.dw-gap.right{background:#e6f4ea;border-color:#2e7d4f;color:#1d5c39;font-weight:bold;}
+.dw-gap.wrong{background:#fdeaea;border-color:#b3261e;color:#8c1d18;}
+.dw-actions{margin-top:16px;}
+.dw-btn{background:var(--tu-marine);color:#fff;border:0;border-radius:6px;padding:10px 18px;
+  font-size:15px;cursor:pointer;margin-right:8px;}
+.dw-btn.sec{background:#fff;color:var(--tu-marine);border:1px solid var(--tu-marine);}
+.dw-res{margin-top:10px;font-weight:bold;color:var(--tu-marine);}
+
+</style>
+</head>
+<body>
+<div class="tu-wrap">
+<h2 class="tu-title">Complete the sentence</h2><p class="tu-intro">Drag each word to the correct gap, then press Check. You can also click a word and then a gap.</p>
+<div class="dw-bank" id="dw-bank"></div>
+<div class="dw-text">In a randomised experiment, participants are assigned to conditions at <span class="dw-gap" data-answer="Tjeuke random" data-gap="0" tabindex="0" role="button" aria-label="Gap 1"></span>, which makes the groups comparable. The variable the researcher manipulates is the <span class="dw-gap" data-answer="independent" data-gap="1" tabindex="0" role="button" aria-label="Gap 2"></span> variable, while the measured outcome is the <span class="dw-gap" data-answer="dependent" data-gap="2" tabindex="0" role="button" aria-label="Gap 3"></span> variable.</div>
+<div class="dw-actions">
+  <button class="dw-btn" type="button" id="dw-check">Check</button>
+  <button class="dw-btn sec" type="button" id="dw-reset">Reset</button>
+</div>
+<p class="dw-res" aria-live="polite"></p>
+</div>
+<script>
+(function(){
+
+var ANSWERS = ["Tjeuke random","independent","dependent"];
+var bank = document.getElementById('dw-bank');
+var gaps = document.querySelectorAll('.dw-gap');
+var res = document.querySelector('.dw-res');
+var picked = null;   // word selected by click
+var dragged = null;  // word currently being dragged
+
+function shuffle(a){var b=a.slice();for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=b[i];b[i]=b[j];b[j]=t;}return b;}
+
+function clearPicked(){ if (picked) { picked.className = 'dw-word'; } picked = null; }
+
+function removeSoon(el){
+  // Removing the source node inside 'drop' breaks the drag session in some
+  // browsers, so defer it to the next tick.
+  setTimeout(function(){ if (el && el.parentNode) el.parentNode.removeChild(el); }, 0);
+}
+
+function makeWord(text){
+  var w = document.createElement('button');
+  w.type = 'button'; w.className = 'dw-word'; w.textContent = text;
+  w.setAttribute('draggable','true');
+  w.addEventListener('dragstart', function(e){
+    dragged = w;
+    clearPicked();
+    try { e.dataTransfer.setData('text/plain', text); } catch (err) {}
+    if (e.dataTransfer) e.dataTransfer.effectAllowed = 'move';
+  });
+  w.addEventListener('dragend', function(){ dragged = null; });
+  w.addEventListener('click', function(){
+    if (picked === w) { clearPicked(); return; }
+    clearPicked();
+    picked = w; w.className = 'dw-word picked';
+  });
+  return w;
+}
+
+function fillBank(){
+  bank.innerHTML = '';
+  var words = shuffle(ANSWERS);
+  for (var i = 0; i < words.length; i++) bank.appendChild(makeWord(words[i]));
+}
+
+function place(gap, text){
+  var prev = gap.textContent.trim();
+  if (prev) { bank.appendChild(makeWord(prev)); }
+  gap.textContent = text;
+  gap.className = 'dw-gap';
+}
+
+for (var i = 0; i < gaps.length; i++) {
+  (function(gap){
+    gap.addEventListener('dragover', function(e){ e.preventDefault(); if (e.dataTransfer) e.dataTransfer.dropEffect = 'move'; gap.className = 'dw-gap over'; });
+    gap.addEventListener('dragleave', function(){ gap.className = 'dw-gap'; });
+    gap.addEventListener('drop', function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      var text = '';
+      try { text = e.dataTransfer.getData('text/plain'); } catch (err) {}
+      if (!text && dragged) text = dragged.textContent;
+      if (!text) { gap.className = 'dw-gap'; return; }
+      var src = dragged;
+      dragged = null;
+      place(gap, text);
+      removeSoon(src);
+    });
+    gap.addEventListener('click', function(){
+      if (picked) {
+        var text = picked.textContent;
+        var src = picked;
+        picked = null;
+        place(gap, text);
+        removeSoon(src);
+      } else if (gap.textContent.trim()) {
+        bank.appendChild(makeWord(gap.textContent.trim()));
+        gap.textContent = '';
+        gap.className = 'dw-gap';
+      }
+    });
+    gap.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); gap.click(); } });
+  })(gaps[i]);
+}
+
+// Dropping a word back onto the bank returns it there.
+bank.addEventListener('dragover', function(e){ e.preventDefault(); });
+bank.addEventListener('drop', function(e){ e.preventDefault(); });
+
+document.getElementById('dw-check').addEventListener('click', function(){
+  var ok = 0;
+  for (var i = 0; i < gaps.length; i++) {
+    var right = gaps[i].textContent.trim() === gaps[i].getAttribute('data-answer');
+    if (right) ok++;
+    gaps[i].className = 'dw-gap ' + (right ? 'right' : 'wrong');
+  }
+  res.textContent = ok + ' of ' + gaps.length + ' gaps correct.';
+});
+
+document.getElementById('dw-reset').addEventListener('click', function(){
+  for (var i = 0; i < gaps.length; i++) { gaps[i].textContent = ''; gaps[i].className = 'dw-gap'; }
+  res.textContent = '';
+  picked = null;
+  dragged = null;
+  fillBank();
+});
+
+fillBank();
+})();
+</script>
+<script>
+  function sendHeight() {
+    const height = Math.max(
+      document.body.scrollHeight,
+      document.documentElement.scrollHeight,
+      document.body.offsetHeight,
+      document.documentElement.offsetHeight
+    );
+    if (window.parent && window.frameElement) {
+      window.frameElement.style.height = height + 'px';
+    }
+  }
+  window.addEventListener('load', sendHeight);
+  window.addEventListener('resize', sendHeight);
+  // Observe dynamic DOM changes (accordions, tabs, expansion)
+  if ('ResizeObserver' in window) {
+    new ResizeObserver(sendHeight).observe(document.body);
+  }
+</script>
+</body>
+</html>
