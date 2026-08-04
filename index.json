@@ -1,5 +1,21 @@
 [
   {
+    "slug": "complete-sentence-default",
+    "file": "complete-sentence-default.html",
+    "url": "https://tilburglawschool.github.io/canvas-widgets/complete-sentence-default.html",
+    "title": "Complete the sentence",
+    "widgetId": "drag-words",
+    "settings": {
+      "title": "Complete the sentence",
+      "intro": "Drag each word to the correct gap, then press Check. You can also click a word and then a gap.",
+      "text": "In a randomised experiment, participants are assigned to conditions at *random*, which makes the groups comparable. The variable the researcher manipulates is the *independent* variable, while the measured outcome is the *dependent* variable."
+    },
+    "height": 420,
+    "note": "Drag words and complete the sentence",
+    "author": "Math",
+    "publishedAt": "2026-08-04T11:23:58.923Z"
+  },
+  {
     "slug": "tab-default",
     "file": "tab-default.html",
     "url": "https://tilburglawschool.github.io/canvas-widgets/tab-default.html",
