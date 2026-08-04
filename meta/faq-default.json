@@ -1,0 +1,29 @@
+{
+  "slug": "faq-default",
+  "file": "faq-default.html",
+  "url": "https://tilburglawschool.github.io/canvas-widgets/faq-default.html",
+  "title": "Frequently asked questions",
+  "widgetId": "accordion",
+  "settings": {
+    "title": "Frequently asked questions",
+    "intro": "Click a question to reveal the answer.",
+    "items": [
+      {
+        "q": "How do I hand in my assignment?",
+        "a": "Use the Assignments section in Canvas and upload a PDF before the deadline."
+      },
+      {
+        "q": "Can I resit the exam?",
+        "a": "Yes. One resit is scheduled at the end of the block."
+      },
+      {
+        "q": "Where do I find the reading list?",
+        "a": "All literature is listed on the Course Information page."
+      }
+    ]
+  },
+  "height": 420,
+  "note": "Default FAQ widget",
+  "author": "Math",
+  "publishedAt": "2026-08-04T09:15:13.248Z"
+}
