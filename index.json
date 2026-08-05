@@ -1,5 +1,42 @@
 [
   {
+    "slug": "grow-test",
+    "file": "grow-test.html",
+    "url": "https://tilburglawschool.github.io/canvas-widgets/grow-test.html",
+    "title": "Kernbegrippen in GROW Bachelor- en Pre-Masterstudenten",
+    "widgetId": "flip-cards",
+    "settings": {
+      "title": "Kernbegrippen in GROW Bachelor- en Pre-Masterstudenten",
+      "intro": "Klik op een kaart om de definitie te zien.",
+      "items": [
+        {
+          "front": "Kernbegrip",
+          "back": "Een centraal idee van GROW Bachelor- en pre-Masterstudenten waar andere onderwerpen in dit vak op voortbouwen."
+        },
+        {
+          "front": "Model",
+          "back": "Een gestructureerde manier om een vraagstuk van GROW Bachelor- en pre-Masterstudenten stap voor stap te analyseren."
+        },
+        {
+          "front": "Belanghebbende",
+          "back": "Iedere persoon of groep die geraakt wordt door een beslissing van GROW Bachelor- en pre-Masterstudenten."
+        },
+        {
+          "front": "Beste voorbeelden",
+          "back": "Een aanpak die zich in de beroepspraktijk van GROW Bachelor- en pre-Masterstudenten herhaaldelijk heeft bewezen."
+        },
+        {
+          "front": "Bladidbla",
+          "back": "Vanille vla"
+        }
+      ]
+    },
+    "height": 460,
+    "note": "",
+    "author": "Math Notermans",
+    "publishedAt": "2026-08-05T09:45:24.775Z"
+  },
+  {
     "slug": "kernbegrippen-in-bachelor-en-pre-master-bestuurskunde",
     "file": "kernbegrippen-in-bachelor-en-pre-master-bestuurskunde.html",
     "url": "https://tilburglawschool.github.io/canvas-widgets/kernbegrippen-in-bachelor-en-pre-master-bestuurskunde.html",
