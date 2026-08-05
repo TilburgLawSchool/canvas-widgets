@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kernbegrippen in Bachelor en Pre-Master Bestuurskunde</title>
+<style>
+
+:root{
+  --tu-marine:#003366;
+  --tu-brons:#cc9933;
+  --tu-ink:#1b1b1b;
+  --tu-line:#d8dee6;
+  --tu-soft:#eef2f7;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  font-family:Arial,"Helvetica Neue",Helvetica,sans-serif;
+  color:var(--tu-ink);
+  background:transparent;
+  line-height:1.5;
+  padding:4px;
+}
+.tu-wrap{max-width:900px;margin:0 auto;}
+.tu-title{
+  font-size:20px;line-height:1.3;color:var(--tu-marine);
+  margin:0 0 4px;font-weight:bold;
+}
+.tu-intro{margin:0 0 16px;color:#41505f;font-size:15px;}
+.tu-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);}
+button{font-family:inherit;}
+
+
+.fc-grid{display:block;font-size:0;margin:0 -8px;}
+.fc-cell{display:inline-block;width:50%;padding:8px;vertical-align:top;font-size:15px;}
+@media (max-width:560px){.fc-cell{width:100%;}}
+.fc{perspective:1000px;cursor:pointer;border:0;background:none;padding:0;width:100%;text-align:left;}
+.fc-inner{position:relative;width:100%;min-height:140px;transition:transform .5s;transform-style:preserve-3d;}
+.fc.flipped .fc-inner{transform:rotateY(180deg);}
+.fc-face{position:absolute;inset:0;backface-visibility:hidden;border-radius:8px;padding:16px;
+  display:flex;align-items:center;justify-content:center;text-align:center;border:1px solid var(--tu-line);}
+.fc-front{background:var(--tu-marine);color:#fff;font-weight:bold;font-size:17px;}
+.fc-back{background:#fff;color:var(--tu-ink);transform:rotateY(180deg);border-top:4px solid var(--tu-brons);}
+.fc:focus-visible .fc-inner{outline:3px solid var(--tu-brons);outline-offset:3px;}
+.fc-spacer{min-height:140px;}
+
+</style>
+</head>
+<body>
+<div class="tu-wrap">
+<h2 class="tu-title">Kernbegrippen in Bachelor en Pre-Master Bestuurskunde</h2><p class="tu-intro">Klik op een kaart om de definitie te zien.</p>
+<div class="fc-grid">
+  <div class="fc-cell"><button class="fc" type="button" aria-pressed="false">
+    <div class="fc-inner">
+      <div class="fc-face fc-front">Kernbegrip</div>
+      <div class="fc-face fc-back">Een centraal idee van bachelor en pre-Master Bestuurskunde waar andere onderwerpen in dit vak op voortbouwen.</div>
+    </div>
+  </button></div>
+  <div class="fc-cell"><button class="fc" type="button" aria-pressed="false">
+    <div class="fc-inner">
+      <div class="fc-face fc-front">Model</div>
+      <div class="fc-face fc-back">Een gestructureerde manier om een vraagstuk van bachelor en pre-Master Bestuurskunde stap voor stap te analyseren.</div>
+    </div>
+  </button></div>
+  <div class="fc-cell"><button class="fc" type="button" aria-pressed="false">
+    <div class="fc-inner">
+      <div class="fc-face fc-front">Belanghebbende</div>
+      <div class="fc-face fc-back">Iedere persoon of groep die geraakt wordt door een beslissing van bachelor en pre-Master Bestuurskunde.</div>
+    </div>
+  </button></div>
+  <div class="fc-cell"><button class="fc" type="button" aria-pressed="false">
+    <div class="fc-inner">
+      <div class="fc-face fc-front">Good practice</div>
+      <div class="fc-face fc-back">Een aanpak die zich in de beroepspraktijk van bachelor en pre-Master Bestuurskunde herhaaldelijk heeft bewezen.</div>
+    </div>
+  </button></div>
+</div>
+</div>
+<script>
+(function(){
+
+var cards = document.querySelectorAll('.fc');
+for (var i = 0; i < cards.length; i++) {
+  cards[i].addEventListener('click', function () {
+    var f = this.className.indexOf('flipped') > -1;
+    this.className = f ? 'fc' : 'fc flipped';
+    this.setAttribute('aria-pressed', f ? 'false' : 'true');
+  });
+}
+})();
+</script>
+<script>
+  function sendHeight() {
+    var height = Math.max(
+      document.body.scrollHeight,
+      document.documentElement.scrollHeight,
+      document.body.offsetHeight,
+      document.documentElement.offsetHeight
+    );
+    try {
+      if (window.frameElement) {
+        window.frameElement.style.height = height + 'px';
+      }
+    } catch (e) { /* cross-origin parent */ }
+    try {
+      if (window.parent && window.parent !== window) {
+        window.parent.postMessage({ type: 'cib-resize', height: height }, '*');
+      }
+    } catch (e) {}
+  }
+  window.addEventListener('load', sendHeight);
+  window.addEventListener('resize', sendHeight);
+  // Observe dynamic DOM changes (accordions, tabs, expansion)
+  if ('ResizeObserver' in window) {
+    new ResizeObserver(sendHeight).observe(document.body);
+  }
+  setTimeout(sendHeight, 300);
+</script>
+</body>
+</html>
