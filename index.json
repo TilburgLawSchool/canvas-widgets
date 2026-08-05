@@ -1,5 +1,38 @@
 [
   {
+    "slug": "kernbegrippen-in-bachelor-en-pre-master-bestuurskunde",
+    "file": "kernbegrippen-in-bachelor-en-pre-master-bestuurskunde.html",
+    "url": "https://tilburglawschool.github.io/canvas-widgets/kernbegrippen-in-bachelor-en-pre-master-bestuurskunde.html",
+    "title": "Kernbegrippen in Bachelor en Pre-Master Bestuurskunde",
+    "widgetId": "flip-cards",
+    "settings": {
+      "title": "Kernbegrippen in Bachelor en Pre-Master Bestuurskunde",
+      "intro": "Klik op een kaart om de definitie te zien.",
+      "items": [
+        {
+          "front": "Kernbegrip",
+          "back": "Een centraal idee van bachelor en pre-Master Bestuurskunde waar andere onderwerpen in dit vak op voortbouwen."
+        },
+        {
+          "front": "Model",
+          "back": "Een gestructureerde manier om een vraagstuk van bachelor en pre-Master Bestuurskunde stap voor stap te analyseren."
+        },
+        {
+          "front": "Belanghebbende",
+          "back": "Iedere persoon of groep die geraakt wordt door een beslissing van bachelor en pre-Master Bestuurskunde."
+        },
+        {
+          "front": "Good practice",
+          "back": "Een aanpak die zich in de beroepspraktijk van bachelor en pre-Master Bestuurskunde herhaaldelijk heeft bewezen."
+        }
+      ]
+    },
+    "height": 460,
+    "note": "Default-Flipcard-NL",
+    "author": "Math Notermans",
+    "publishedAt": "2026-08-05T09:31:02.295Z"
+  },
+  {
     "slug": "complete-sentence-default",
     "file": "complete-sentence-default.html",
     "url": "https://tilburglawschool.github.io/canvas-widgets/complete-sentence-default.html",
